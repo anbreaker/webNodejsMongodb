@@ -9,4 +9,4 @@ mongoose
   })
 
   .then((db) => console.log('\n<-- Data Base is Connected!-->'))
-  .catch((err) => console.error(err));
+  .catch((err) => console.error('Hubo un error ->', err));

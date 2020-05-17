@@ -6,6 +6,7 @@ const session = require('express-session');
 
 //Initializations
 const app = express();
+require('./database');
 
 // <-- Settings -->
 // Configuration Port
@@ -23,7 +24,7 @@ app.engine(
   })
 );
 // Template engine configuration
-app.set('views engine', '.hbs');
+app.set('view engine', '.hbs');
 
 // <-- Middlewares -->
 // Form sends data, understand it, but not accept images etc...(Methos of Express)
@@ -50,5 +51,5 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // <-- Server listenning -->
 const server = app.listen(app.get('port'), () => {
-  console.log(`Listening server on Port -> http://localhost:${server.address().port}`);
+  console.log(`\nListening server on Port -> http://localhost:${server.address().port}`);
 });

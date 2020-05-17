@@ -9,3 +9,6 @@ router.get('/notes', (req, res) => {
 });
 
 module.exports = router;
+
+// https://www.youtube.com/watch?v=-bI0diefasA
+// 59.00

@@ -8,5 +8,5 @@ mongoose
     useFindAndModify: false,
   })
 
-  .then((db) => console.log('\n<-- Data Base is Connected!-->'))
-  .catch((err) => console.error('Hubo un error ->', err));
+  .then((db) => console.log('\n<-- Data Base is Connected!-->\n'))
+  .catch((err) => console.error(`\nHubo un error -> ${err}\n`));

@@ -54,3 +54,5 @@ app.use(require('./routes/users'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 module.exports = app;
+
+// https://www.youtube.com/watch?v=rkstpRcjZIw&list=PLo5lAe9kQrwqUEXK7oQbzv63KsdODzuAy&index=8

@@ -1,11 +1,13 @@
 const mongoose = require('mongoose');
 
+const {NOTES_APP_MONGODB_HOST, NOTES_APP_MONGODB_DATABASE} = process.env;
+const MONGODB_URI = `mongodb://${NOTES_APP_MONGODB_HOST}/${NOTES_APP_MONGODB_DATABASE}`;
+
 // Configurate tool mongoose to conet mongodb
 mongoose
-  .connect('mongodb://localhost/notes-db-app', {
-    useCreateIndex: true,
+  .connect(MONGODB_URI, {
+    useUnifiedTopology: true,
     useNewUrlParser: true,
-    useFindAndModify: false,
   })
 
   .then((db) => console.log('\n<-- Data Base is Connected!-->\n'))

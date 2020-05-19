@@ -1,18 +1,22 @@
 const express = require('express');
-const path = require('path');
 const exphbs = require('express-handlebars');
+const path = require('path');
 const methodOverride = require('method-override');
 const session = require('express-session');
+const flash = require('connect-flash');
+const passport = require('passport');
 
 //Initializations
-const app = require('./server');
+const app = express();
 require('./database');
 
 // <-- Settings -->
 // Configuration Port
 app.set('port', process.env.PORT || 3000);
+
 // Set views, with path
 app.set('views', path.join(__dirname, 'views'));
+
 // Express-handlebars configuration for use mode views
 app.engine(
   '.hbs',
@@ -23,17 +27,17 @@ app.engine(
     extname: '.hbs',
   })
 );
+
 // Template engine configuration
 app.set('view engine', '.hbs');
 
 // <-- Middlewares -->
 // Form sends data, understand it, but not accept images etc...(Methos of Express)
 app.use(express.urlencoded({extended: false}));
-
 app.use(methodOverride('_method'));
 app.use(
   session({
-    secret: 'mysecret',
+    secret: 'secret',
     resave: true,
     saveUninitialized: true,
   })
@@ -49,8 +53,4 @@ app.use(require('./routes/users'));
 // <-- Static Files -->
 app.use(express.static(path.join(__dirname, 'public')));
 
-// <-- Server listenning -->
-const server = app.listen(app.get('port'), () => {
-  console.log(`\nListening server on Port -> http://localhost:${server.address().port}`);
-  console.log('Environment:', process.env.NODE_ENV);
-});
+module.exports = app;

@@ -1,43 +1,33 @@
-const express = require('express');
+const {Router} = require('express');
 
 // Route management
-const router = express.Router();
+const router = Router();
 
-// Created Routes of server
+// Import controllers & Created Routes of server
+const {
+  renderNotesForm,
+  createNewNote,
+  renderNotes,
+  renderEditForm,
+  updateNotes,
+} = require('../controllers/notes.controller');
 
-router.get('/notes/add', (req, res) => {
-  res.render('notes/new-note');
-});
+// Of Controllers go to Routes of server
+// New Notes
+router.get('/notes/add', renderNotesForm);
 
-// Path to receive data
-router.post('/notes/new-note', (req, res) => {
-  // console.log(req.body);
-  const {title, description} = req.body;
+router.post('/notes/add', createNewNote);
 
-  // Validate inputs
-  const errors = [];
-  if (!title) {
-    errors.push({text: 'Please Write a Title'});
-  }
-  if (!description) {
-    errors.push({text: 'Please Write a Description'});
-  }
+// Get All Notes
+router.get('/notes', renderNotes);
 
-  if (errors.length > 0) {
-    res.render('notes/new-note', {
-      errors,
-      title,
-      description,
-    });
-  } else {
-    res.send('ok');
-  }
+//Edit Notes
+// Show Data
+router.get('/notes/edit/:id', renderEditForm);
+// Change Data, put is to update
+router.put('/notes/edit/:id', updateNotes);
 
-  res.send('ok');
-});
-
-router.get('/notes', (req, res) => {
-  res.send('Notes from database');
-});
+// Delete Notes
+router.delete('notes/delete/:id');
 
 module.exports = router;

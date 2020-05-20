@@ -2,17 +2,13 @@
 const {Router} = require('express');
 
 // Route management
-const router = express.Router();
+const router = Router();
 
-// Created Routes of server
-router.get('/', (req, res) => {
-  // res.send('Index');
-  res.render('index');
-});
+// Import controllers
+const {renderIndex, renderAbout} = require('../controllers/index.controller');
 
-// Route About
-router.get('/about', (req, res) => {
-  res.render('about');
-});
+// Of Controllers go to Routes of server
+router.get('/', renderIndex);
+router.get('/', renderAbout);
 
 module.exports = router;

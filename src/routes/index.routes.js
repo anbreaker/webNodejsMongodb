@@ -9,6 +9,6 @@ const {renderIndex, renderAbout} = require('../controllers/index.controller');
 
 // Of Controllers go to Routes of server
 router.get('/', renderIndex);
-router.get('/', renderAbout);
+router.get('/about', renderAbout);
 
 module.exports = router;

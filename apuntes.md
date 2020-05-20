@@ -20,4 +20,4 @@ Autentificacion en la webapp: passport passport-local
 Cifrar strings: bcryptjs
 Enviar mensajes entre vistas: connect-flash
 
-https://www.youtube.com/watch?v=Hjp0nTY2dBk&list=PLo5lAe9kQrwqUEXK7oQbzv63KsdODzuAy&index=9
+https://www.youtube.com/watch?v=8sXcFXFOWK4&list=PLo5lAe9kQrwqUEXK7oQbzv63KsdODzuAy&index=11

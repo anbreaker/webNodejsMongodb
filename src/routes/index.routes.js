@@ -1,4 +1,5 @@
-const express = require('express');
+// Of Express only Router
+const {Router} = require('express');
 
 // Route management
 const router = express.Router();

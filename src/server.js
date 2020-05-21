@@ -1,10 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
 const path = require('path');
-const methodOverride = require('method-override');
-const session = require('express-session');
-const flash = require('connect-flash');
-const passport = require('passport');
+const morgan = require('morgan');
 
 //Initializations
 const app = express();
@@ -32,16 +29,19 @@ app.engine(
 app.set('view engine', '.hbs');
 
 // <-- Middlewares -->
+// Use module Morgan to see request Http
+app.use(morgan('dev'));
+
 // Form sends data, understand it, but not accept images etc...(Methos of Express)
 app.use(express.urlencoded({extended: false}));
-app.use(methodOverride('_method'));
-app.use(
-  session({
-    secret: 'secret',
-    resave: true,
-    saveUninitialized: true,
-  })
-);
+
+// app.use(
+//   session({
+//     secret: 'secret',
+//     resave: true,
+//     saveUninitialized: true,
+//   })
+// );
 
 // <-- Global Variables -->
 

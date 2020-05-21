@@ -1,3 +1,6 @@
+// Model of Schema
+const Note = require('../models/Notes');
+
 // Created Objetc of Routes
 const notesCtrl = {};
 
@@ -7,12 +10,20 @@ notesCtrl.renderNotesForm = (req, res) => {
   res.send('Note add');
 };
 
-notesCtrl.createNewNote = (req, res) => {
+notesCtrl.createNewNote = async (req, res) => {
+  //Save Notes
+  const {title, description} = req.body;
+  const newNote = new Note({title, description});
+  console.log(newNote);
+  await newNote.save();
+
   res.send('new Note');
 };
 
-notesCtrl.renderNotes = (req, res) => {
-  res.send('Render Notes');
+notesCtrl.renderNotes = async (req, res) => {
+  // res.send('Note add');
+  const notes = await Note.find();
+  res.render('notes/all-notes', {notes});
 };
 
 notesCtrl.renderEditForm = (req, res) => {

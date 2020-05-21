@@ -6,8 +6,7 @@ const notesCtrl = {};
 
 // Created Routes of server
 notesCtrl.renderNotesForm = (req, res) => {
-  // res.render('index');
-  res.send('Note add');
+  res.render('notes/new-note');
 };
 
 notesCtrl.createNewNote = async (req, res) => {
@@ -22,7 +21,10 @@ notesCtrl.createNewNote = async (req, res) => {
 
 notesCtrl.renderNotes = async (req, res) => {
   // res.send('Note add');
-  const notes = await Note.find();
+  // el tipo de objeto que devuelve mongoose:
+  // https://mongoosejs.com/docs/tutorials/lean.html
+  // al usar el .lean() lo pasa a formato JSON
+  const notes = await Note.find().lean();
   res.render('notes/all-notes', {notes});
 };
 

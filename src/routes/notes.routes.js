@@ -13,7 +13,7 @@ const {
 } = require('../controllers/notes.controller');
 
 // Of Controllers go to Routes of server
-// New Notes
+// New Notes, acces to form
 router.get('/notes/add', renderNotesForm);
 
 router.post('/notes/new-note', createNewNote);

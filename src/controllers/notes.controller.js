@@ -16,7 +16,8 @@ notesCtrl.createNewNote = async (req, res) => {
   console.log(newNote);
   await newNote.save();
 
-  res.send('new Note');
+  // res.send('new Note');
+  res.redirect('/notes');
 };
 
 notesCtrl.renderNotes = async (req, res) => {
@@ -36,8 +37,12 @@ notesCtrl.updateNotes = (req, res) => {
   res.send('Update Notes');
 };
 
-notesCtrl.deleteNotes = (req, res) => {
-  res.send('Deleting Note');
+notesCtrl.deleteNote = async (req, res) => {
+  // For delte note
+  // console.log(req.params.id); --> Exist id
+  await Note.findByIdAndDelete(req.params.id);
+  // res.send('Deleting Note');
+  res.redirect('/notes');
 };
 
 module.exports = notesCtrl;

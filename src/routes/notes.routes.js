@@ -10,6 +10,7 @@ const {
   renderNotes,
   renderEditForm,
   updateNotes,
+  deleteNote,
 } = require('../controllers/notes.controller');
 
 // Of Controllers go to Routes of server
@@ -28,6 +29,6 @@ router.get('/notes/edit/:id', renderEditForm);
 router.put('/notes/edit/:id', updateNotes);
 
 // Delete Notes
-router.delete('notes/delete/:id');
+router.delete('/notes/delete/:id', deleteNote);
 
 module.exports = router;

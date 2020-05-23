@@ -29,12 +29,19 @@ notesCtrl.renderNotes = async (req, res) => {
   res.render('notes/all-notes', {notes});
 };
 
-notesCtrl.renderEditForm = (req, res) => {
-  res.send('Render Edit Form');
+notesCtrl.renderEditForm = async (req, res) => {
+  // res.send('Render Edit Form');
+  const note = await Note.findById(req.params.id).lean();
+  // console.log(note);
+  res.render('notes/edit-note', {note});
 };
 
-notesCtrl.updateNotes = (req, res) => {
-  res.send('Update Notes');
+notesCtrl.updateNotes = async (req, res) => {
+  // console.log(req.body);
+  // res.send('Update Notes');
+  const {title, description} = req.body;
+  await Note.findByIdAndUpdate(req.params.id, {title, description});
+  res.redirect('/notes');
 };
 
 notesCtrl.deleteNote = async (req, res) => {

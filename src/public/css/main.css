@@ -5,5 +5,9 @@ body {
     /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to right, #2B32B2, #1488CC);
     /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    color: orange;
+    color: #1a237e;
+}
+
+.logo {
+    width: 40%;
 }

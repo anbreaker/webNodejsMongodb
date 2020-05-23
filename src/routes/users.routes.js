@@ -1,16 +1,27 @@
-const express = require('express');
+// Of Express only Router
+const {Router} = require('express');
 
 // Route management
-const router = express.Router();
+const router = Router();
+
+// Import controllers
+const {
+  renderSingUpForm,
+  renderSinginForm,
+  signup,
+  signin,
+  logout,
+} = require('../controllers/users.controller.js');
 
 // Created Routes of server
-router.get('/users/signin', (req, res) => {
-  // res.send('SingIng');
-  res.render('users/signin');
-});
+router.get('/users/signup', renderSingUpForm);
 
-router.get('/users/signup', (req, res) => {
-  res.render('users/signup');
-});
+router.post('/users/signup', signup);
+
+router.get('/users/signin', renderSinginForm);
+
+router.post('/users/signin', signin);
+
+router.get('/users/logout', logout);
 
 module.exports = router;

@@ -1,6 +1,6 @@
 # webNodejsMongodb
 
-Nodejs y Mongodb Aplicación completa (Login, Registro,CRUD, ES6+, y más)
+Nodejs y Mongodb Aplicación completa (Login, Registro,CRUD, ES6+, and more)
 
 - This is a basic App to manage simple Notes on the web using Javascript Technologies like Nodejs,
   Mongodb, and so

@@ -16,7 +16,9 @@ notesCtrl.createNewNote = async (req, res) => {
   console.log(newNote);
   await newNote.save();
 
-  // res.send('new Note');
+  // Module connect-flash to send msg between pages
+  req.flash('success_msg', 'Note Added Successfully');
+
   res.redirect('/notes');
 };
 
@@ -41,6 +43,9 @@ notesCtrl.updateNotes = async (req, res) => {
   // res.send('Update Notes');
   const {title, description} = req.body;
   await Note.findByIdAndUpdate(req.params.id, {title, description});
+
+  req.flash('success_msg', 'Note Update Successfully');
+
   res.redirect('/notes');
 };
 
@@ -48,6 +53,9 @@ notesCtrl.deleteNote = async (req, res) => {
   // For delte note
   // console.log(req.params.id); --> Exist id
   await Note.findByIdAndDelete(req.params.id);
+
+  req.flash('success_msg', 'Note Delete Successfully');
+
   // res.send('Deleting Note');
   res.redirect('/notes');
 };

@@ -3,6 +3,8 @@ const exphbs = require('express-handlebars');
 const path = require('path');
 const morgan = require('morgan');
 const methodOverride = require('method-override');
+const flash = require('connect-flash');
+const session = require('express-session');
 
 //Initializations
 const app = express();
@@ -39,15 +41,24 @@ app.use(express.urlencoded({extended: false}));
 // Use method-override, send _method with consulitng with POST
 app.use(methodOverride('_method'));
 
-// app.use(
-//   session({
-//     secret: 'secret',
-//     resave: true,
-//     saveUninitialized: true,
-//   })
-// );
+// connect-flash
+// This module is used to know the state between pages (html's...)
+app.use(
+  session({
+    secret: 'secret',
+    resave: true,
+    saveUninitialized: true,
+  })
+);
+app.use(flash());
 
 // <-- Global Variables -->
+// To use in all views
+app.use((req, res, next) => {
+  // Methos flash of module connect-flash
+  res.locals.success_msg = req.flash('success_msg');
+  next();
+});
 
 // <-- Routes -->
 app.use(require('./routes/index.routes'));

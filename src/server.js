@@ -5,10 +5,12 @@ const morgan = require('morgan');
 const methodOverride = require('method-override');
 const flash = require('connect-flash');
 const session = require('express-session');
+const passport = require('passport');
 
 //Initializations
 const app = express();
 require('./database');
+require('./config/passport');
 
 // <-- Settings -->
 // Configuration Port
@@ -52,12 +54,17 @@ app.use(
 );
 app.use(flash());
 
+// Import module passport to use login betweens pages
+app.use(passport.initialize());
+app.use(passport.session());
+
 // <-- Global Variables -->
 // To use in all views
 app.use((req, res, next) => {
   // Methos flash of module connect-flash
   res.locals.success_msg = req.flash('success_msg');
   res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
   next();
 });
 

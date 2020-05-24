@@ -1,6 +1,8 @@
 // Created Objetc of Routes
 const usersCtrl = {};
 
+const passport = require('passport');
+
 // Import Sechema User
 const User = require('../models/User');
 
@@ -55,9 +57,11 @@ usersCtrl.renderSinginForm = (req, res) => {
 };
 
 // Loggin Method Control Post
-usersCtrl.signin = (req, res) => {
-  res.send('singIn');
-};
+usersCtrl.signin = passport.authenticate('local', {
+  failureRedirect: '/users/signin',
+  successRedirect: '/notes',
+  failureFlash: true,
+});
 
 // Method Control Get
 usersCtrl.logout = (req, res) => {

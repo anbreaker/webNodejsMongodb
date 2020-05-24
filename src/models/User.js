@@ -20,7 +20,7 @@ UserSchema.methods.encryptPassword = async (password) => {
 };
 
 // Comparation encryption password of user with pasword without cript
-UserSchema.methods.matchPassword = async (password) => {
+UserSchema.methods.matchPassword = async function (password) {
   // return true or false
   return await bcrypt.compare(password, this.password);
 };

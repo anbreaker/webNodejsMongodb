@@ -1,11 +1,10 @@
 const mongoose = require('mongoose');
-require('dotenv').load();
-mongoose.connect(process.env.MONGOLAB_URI);
 
 const {NOTES_APP_MONGODB_HOST, NOTES_APP_MONGODB_DATABASE} = process.env;
 const MONGODB_URI = `mongodb://${NOTES_APP_MONGODB_HOST}/${NOTES_APP_MONGODB_DATABASE}`;
 
 // Configurate tool mongoose to conet mongodb
+mongoose.connect(process.env.MONGOLAB_URI);
 mongoose
   .connect(MONGODB_URI, {
     useUnifiedTopology: true,

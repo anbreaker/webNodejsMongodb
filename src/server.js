@@ -14,7 +14,8 @@ require('./config/passport');
 
 // <-- Settings -->
 // Configuration Port
-app.set('port', process.env.PORT || 3000);
+// app.set('port', process.env.PORT || 3000);
+app.set('port', process.env.PORT);
 
 // Set views, with path
 app.set('views', path.join(__dirname, 'views'));

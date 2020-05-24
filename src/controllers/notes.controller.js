@@ -13,7 +13,8 @@ notesCtrl.createNewNote = async (req, res) => {
   //Save Notes
   const {title, description} = req.body;
   const newNote = new Note({title, description});
-  console.log(newNote);
+  // console.log(newNote);
+  newNote.user = req.user._id;
   await newNote.save();
 
   // Module connect-flash to send msg between pages
@@ -27,7 +28,7 @@ notesCtrl.renderNotes = async (req, res) => {
   // el tipo de objeto que devuelve mongoose:
   // https://mongoosejs.com/docs/tutorials/lean.html
   // al usar el .lean() lo pasa a formato JSON
-  const notes = await Note.find().lean();
+  const notes = await Note.find({user: req.user._id}).sort({createdAt: 'desc'}).lean();
   res.render('notes/all-notes', {notes});
 };
 
@@ -35,6 +36,10 @@ notesCtrl.renderEditForm = async (req, res) => {
   // res.send('Render Edit Form');
   const note = await Note.findById(req.params.id).lean();
   // console.log(note);
+  if (note.user != req.user._id) {
+    req.flash('error_msg', 'Not Authorized!.');
+    return res.redirect('/notes');
+  }
   res.render('notes/edit-note', {note});
 };
 

@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "dotenv": "^8.2.0",
-    "nodemon": "^2.0.4",
-    "npm-check-updates": "^6.0.1"
+    "nodemon": "^2.0.20",
+    "npm-check-updates": "^16.7.4"
   }
 }
